@@ -1,35 +1,29 @@
 // swift-tools-version: 5.9
-
 import PackageDescription
 
 let package = Package(
     name: "ValidatorKit",
+    defaultLocalization: "en",
     platforms: [
-        .iOS(.v16),
-        .macOS(.v13),
-        .tvOS(.v16),
-        .watchOS(.v9),
-        .visionOS(.v1)
+        .iOS(.v14),
+        .macOS(.v11),
+        .tvOS(.v14),
+        .watchOS(.v7)
     ],
     products: [
         .library(
             name: "ValidatorKit",
-            targets: ["ValidatorKit"]
-        ),
+            targets: ["ValidatorKit"]),
     ],
+    dependencies: [],
     targets: [
         .target(
             name: "ValidatorKit",
-            path: "Sources/ValidatorKit",
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency")
-            ]
-        ),
+            dependencies: [],
+            path: "Sources/ValidatorKit"),
         .testTarget(
             name: "ValidatorKitTests",
             dependencies: ["ValidatorKit"],
-            path: "Tests/ValidatorKitTests"
-        ),
-    ],
-    swiftLanguageVersions: [.v5]
+            path: "Tests/ValidatorKitTests"),
+    ]
 )
