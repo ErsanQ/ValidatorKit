@@ -1,3 +1,4 @@
+#if canImport(SwiftUI)
 import SwiftUI
 
 // MARK: - ValidatedField
@@ -72,23 +73,22 @@ public struct ValidatedField: View {
                     TextField(title, text: $text)
                 }
             }
-            .onChange(of: text) { _, newValue in
+            .onChange(of: text) { newValue in
                 isDirty = true
                 result = chain.validate(newValue)
             }
-            .overlay(alignment: .bottom) {
-                if isDirty, case .invalid = result {
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundStyle(errorColor)
-                        .offset(y: 1)
-                }
+
+            if isDirty, case .invalid = result {
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(errorColor)
+                    .offset(y: -2)
             }
 
             if isDirty, let message = result.errorMessage {
                 Text(message)
                     .font(.caption)
-                    .foregroundStyle(errorColor)
+                    .foregroundColor(errorColor)
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
@@ -129,3 +129,4 @@ public extension View {
         )
     }
 }
+#endif

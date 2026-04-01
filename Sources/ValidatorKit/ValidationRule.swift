@@ -240,6 +240,6 @@ public struct AlphanumericRule: ValidationRule {
     }
 
     public func validate(_ value: String) -> ValidationResult {
-        value.allSatisfy(\.isLetter || \.isNumber) ? .valid : .invalid(message: message)
+        value.allSatisfy { $0.isLetter || $0.isNumber } ? .valid : .invalid(message: message)
     }
 }
