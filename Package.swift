@@ -24,7 +24,6 @@ let package = Package(
             path: "Sources/ValidatorKit"),
         .testTarget(
             name: "ValidatorKitTests",
-            dependencies: ["ValidatorKit"],
-            path: "Tests/ValidatorKitTests"),
+            dependencies: ["ValidatorKit"]),
     ]
 )
